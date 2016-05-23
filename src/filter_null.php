@@ -14,16 +14,14 @@ namespace Tebru;
  */
 function filter_null(array $array)
 {
-    return array_filter(
-        $array,
-        function (&$value) {
-            if (!is_array($value)) {
-                return null !== $value;
-            }
-
-            $value = filter_null($value);
-
-            return true;
+    $result = [];
+    foreach ($array as $key => $value) {
+        if (null === $value) {
+            continue;
         }
-    );
+
+        $result[$key] = is_array($value) ? filter_null($value) : $value;
+    }
+
+    return $result;
 }

@@ -18,28 +18,28 @@ class FilterNullTest extends PHPUnit_Framework_TestCase
 {
     public function testCanRemoveNulls()
     {
-        $result = Tebru\filter_null([1, 'test', true, null]);
-        self::assertSame([1, 'test', true], $result);
+        $result = Tebru\filter_null([0, '', false, null]);
+        self::assertSame([0, '', false], $result);
     }
 
     public function testCanRemoveNullsFromAssociated()
     {
-        $result = Tebru\filter_null(['foo' => 1, 'bar' => 'test', 'baz' => true, 'qux' => null]);
-        self::assertSame(['foo' => 1, 'bar' => 'test', 'baz' => true], $result);
+        $result = Tebru\filter_null(['foo' => 0, 'bar' => '', 'baz' => false, 'qux' => null]);
+        self::assertSame(['foo' => 0, 'bar' => '', 'baz' => false], $result);
     }
 
     public function testCanRemoveNestedArrays()
     {
         $array = [
-            'foo' => 1,
+            'foo' => 0,
             'bar' => [
-                'foo' => 1,
-                'bar' => 'test',
+                'foo' => 0,
+                'bar' => '',
                 'baz' => null,
                 'qux' => [
-                    'foo' => 1,
-                    'bar' => 'test',
-                    'baz' => true,
+                    'foo' => 0,
+                    'bar' => '',
+                    'baz' => false,
                     'qux' => null
                 ],
             ],
@@ -47,14 +47,14 @@ class FilterNullTest extends PHPUnit_Framework_TestCase
         ];
 
         $expected = [
-            'foo' => 1,
+            'foo' => 0,
             'bar' => [
-                'foo' => 1,
-                'bar' => 'test',
+                'foo' => 0,
+                'bar' => '',
                 'qux' => [
-                    'foo' => 1,
-                    'bar' => 'test',
-                    'baz' => true,
+                    'foo' => 0,
+                    'bar' => '',
+                    'baz' => false,
                 ],
             ],
         ];
