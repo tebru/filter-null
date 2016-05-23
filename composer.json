@@ -1,0 +1,19 @@
+{
+    "name": "tebru/filter-null",
+    "description": "Remove all nulls from an array",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nate Brunette",
+            "email": "n@tebru.net"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^4.0"
+    },
+    "autoload": {
+        "files": [
+            "src/filter_null.php"
+        ]
+    }
+}

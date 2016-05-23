@@ -1,0 +1,18 @@
+sudo: false
+
+language: php
+php:
+  - 5.4
+  - 5.5
+  - 5.6
+  - 7.0
+
+before_script:
+  - composer install --no-interaction -o
+
+script:
+  - mkdir -p build/logs
+  - vendor/bin/phpunit
+
+after_script:
+  - php bin/coveralls.phar -v
